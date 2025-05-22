@@ -8,7 +8,7 @@
  * @author Adm
  */
 public class ProdutosDTO {
-    private Integer id;
+    private int id;
     private String nome;
     private Integer valor;
     private String status;
