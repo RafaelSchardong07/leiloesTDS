@@ -63,8 +63,33 @@ public class ProdutosDAO {
 
     return listagem;
 }
+    public boolean venderProduto(int idProduto) {
+    String sql = "UPDATE produtos SET status = ? WHERE id = ?";
+
+    try {
+        conectaDAO dao = new conectaDAO();
+        Connection conn = dao.conectar();
+
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, "Vendido");
+        ps.setInt(2, idProduto);
+
+        int linhasAfetadas = ps.executeUpdate();
+
+        if (linhasAfetadas > 0) {
+            JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Produto não encontrado.");
+            return false;
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Erro ao vender produto: " + e.getMessage());
+        return false;
+    }
+ }   
 }   
-    
     
         
 
